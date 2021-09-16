@@ -1,7 +1,5 @@
 VitalPBX High Availability (Version 3)
 =====
-## This is a proof of concept. If you implement it, it is at your own risk.<br>
-## VitalPBX Teams does not support this type of implementation.<br>
 High availability is a characteristic of a system which aims to ensure an agreed level of operational performance, usually uptime, for a higher than normal period.<br>
 
 Make a high-availability cluster out of any pair of VitalPBX servers. VitalPBX can detect a range of failures on one VitalPBX server and automatically transfer control to the other server, resulting in a telephony environment with minimal down time.<br>
