@@ -33,7 +33,7 @@ Disable the DHCP option and set these values<br>
 | Primary DNS   | 8.8.8.8                | 8.8.8.8               |
 | Secondary DNS | 8.8.4.4                | 8.8.4.4               |
 
-# Bind Address
+## Bind Address
 In the Master server go to SETTINGS/PJSIP Settings and configure the Floating IP that we are going to use in "Bind" and "TLS Bind".
 Also do it in SETTINGS/SIP Settings Tab NETWORK fields "TCP Bind Address" and "TLS Bind Address".
 
