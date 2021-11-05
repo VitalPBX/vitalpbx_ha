@@ -5,7 +5,8 @@ High availability is a characteristic of a system which aims to ensure an agreed
 Make a high-availability cluster out of any pair of VitalPBX servers. VitalPBX can detect a range of failures on one VitalPBX server and automatically transfer control to the other server, resulting in a telephony environment with minimal down time.<br>
 
 <strong>Important note:</strong><br>
-Since DRBD is no longer used in version 3, it is not possible to migrate a High Availability VitalPBX from Version 2 to 3.
+Since DRBD is no longer used in version 3, it is not possible to migrate a High Availability VitalPBX from Version 2 to 3.<br>
+If you are going to restore some Backup from another server that is not in HA, restore it first in the Master server before creating the HA. This should be done as the backup does not contain the firewall rules for HA to work.
 
 ## Example:<br>
 ![VitalPBX HA](https://github.com/VitalPBX/vitalpbx_ha/blob/master/HAReplica2Servers.png)
@@ -31,6 +32,10 @@ Disable the DHCP option and set these values<br>
 | Gateway       | 192.168.10.1           | 192.168.10.1          |
 | Primary DNS   | 8.8.8.8                | 8.8.8.8               |
 | Secondary DNS | 8.8.4.4                | 8.8.4.4               |
+
+# Bind Address
+In the Master server go to SETTINGS/PJSIP Settings and configure the Floating IP that we are going to use in "Bind" and "TLS Bind".
+Also do it in SETTINGS/SIP Settings Tab NETWORK fields "TCP Bind Address" and "TLS Bind Address".
 
 ## Install Dependencies
 Install the necessary dependencies on both servers<br>
