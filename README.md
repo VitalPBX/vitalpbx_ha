@@ -18,6 +18,8 @@ a.- 3 IP addresses.<br>
 b.- Install VitalPBX Version 3.0 in two servers with similar characteristics.<br>
 c.- MariaDB Galera (include in VitalPBX 3).<br>
 d.- Corosync, Pacemaker, PCS and lsyncd.
+e.- Root user is required for both servers to communicate.
+f.- Both servers will not be able to have a proxy since this affects the communication between them.
 
 ## Configurations
 We will configure in each server the IP address and the host name. Go to the web interface to: <strong>Admin>System Settinngs>Network Settings</strong>.<br>
@@ -173,7 +175,7 @@ If you have to turn off both servers at the same time, we recommend that you sta
 If the two servers stopped abruptly, always start first that you think you have the most up-to-date information and a few minutes later the other server<br>
 If you want to update the version of VitalPBX we recommend you do it first on Server 1, then do a bascul and do it again on Server 2<br>
 
-## Dahdi with Xorcom HA Hardware
+## Dahdi with Xorcom HA Hardware - Only install if you are using physical telephony cards
 If you are going to install Dhadi with Xorcom HA Hardware we recommend you to execute the following commands in the Server <strong>1</strong>
 
 <pre>
@@ -215,6 +217,14 @@ To update VitalPBX to the latest version just follow the following steps:<br>
 • <strong>role</strong>, shows the status of the current server. If all is well you should return Masters or Slaves.<br>
 • <strong>pcs resource refresh --full</strong>, to poll all resources even if the status is unknown, enter the following command.<br>
 • <strong>pcs cluster unstandby host</strong>, in some cases the bascul command does not finish tilting, which causes one of the servers to be in standby (stop), with this command the state is restored to normal.<br>
+
+## If the databases lose synchronization
+<pre>
+[root@vitalpbx1 /]# mysql -uroot
+mysql> STOP SLAVE;
+mysql> SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;
+mysql> START SLAVE;
+</pre>
 
 ## More Information
 If you want more information that will help you solve problems about High Availability in VitalPBX we invite you to see the following manual<br>
