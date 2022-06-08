@@ -17,8 +17,8 @@ In order to install VitalPBX in high availability you need the following:<br>
 a.- 3 IP addresses.<br>
 b.- Install VitalPBX Version 3.0 in two servers with similar characteristics.<br>
 c.- MariaDB Galera (include in VitalPBX 3).<br>
-d.- Corosync, Pacemaker, PCS and lsyncd.
-e.- Root user is required for both servers to communicate.
+d.- Corosync, Pacemaker, PCS and lsyncd.<br>
+e.- Root user is required for both servers to communicate.<br>
 f.- Both servers will not be able to have a proxy since this affects the communication between them.
 
 ## Configurations
