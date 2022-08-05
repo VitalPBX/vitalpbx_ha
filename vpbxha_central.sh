@@ -104,7 +104,7 @@ echo -e "************************************************************"
 echo -e "*            Get the hostname in Master and Standby         *"
 echo -e "************************************************************"
 host_master=`hostname -f`
-host_standby=`ssh root@$ip_standby 'hostname -f'`
+host_standby=`ssh central@$ip_standby 'hostname -f'`
 echo -e "$host_master"
 echo -e "$host_standby"
 echo -e "*** Done ***"
@@ -180,12 +180,12 @@ echo -e "
 "
 EOF
 chmod 755 /etc/profile.d/vitalwelcome.sh
-scp /etc/profile.d/vitalwelcome.sh root@$ip_standby:/etc/profile.d/vitalwelcome.sh
-ssh root@$ip_standby "chmod 755 /etc/profile.d/vitalwelcome.sh"
+scp /etc/profile.d/vitalwelcome.sh central@$ip_standby:/etc/profile.d/vitalwelcome.sh
+ssh central@$ip_standby "chmod 755 /etc/profile.d/vitalwelcome.sh"
 rm -rf /usr/local/bin/bascul		
 rm -rf /usr/local/bin/role
-ssh root@$ip_standby "rm -rf /usr/local/bin/bascul"
-ssh root@$ip_standby "rm -rf /usr/local/bin/role"
+ssh central@$ip_standby "rm -rf /usr/local/bin/bascul"
+ssh central@$ip_standby "rm -rf /usr/local/bin/role"
 echo -e "************************************************************"
 echo -e "*         Remove Firewall Services/Rules in Mariadb        *"
 echo -e "************************************************************"
