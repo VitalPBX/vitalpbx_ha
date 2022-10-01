@@ -1169,7 +1169,7 @@ echo -e "18"	> step.txt
 
 wget https://raw.githubusercontent.com/VitalPBX/vitalpbx_ha/master/mariadbfix
 mv mariadbfix /usr/local/bin/mariadbfix
-cp -rf config.txt /usr/local/bin/config.txt
+yes | cp -fr config.txt /usr/local/bin/config.txt
 chmod +x /usr/local/bin/mariadbfix
 
 vitalpbx_cluster_ok:
