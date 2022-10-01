@@ -1168,7 +1168,7 @@ echo -e "*** Done Step 18 END ***"
 echo -e "18"	> step.txt
 
 wget https://raw.githubusercontent.com/VitalPBX/vitalpbx_ha/master/mariadbfix
-mv mariadbfix /usr/local/bin/mariadbfix
+yes | cp -fr mariadbfix /usr/local/bin/mariadbfix
 yes | cp -fr config.txt /usr/local/bin/config.txt
 chmod +x /usr/local/bin/mariadbfix
 
