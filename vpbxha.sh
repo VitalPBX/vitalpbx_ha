@@ -1168,8 +1168,8 @@ echo -e "*** Done Step 18 END ***"
 echo -e "18"	> step.txt
 
 wget https://raw.githubusercontent.com/VitalPBX/vitalpbx_ha/master/mariadbfix
-mv mariadbfix /usr/local/bin/role/mariadbfix
-chmod +x /usr/local/bin/role/mariadbfix
+mv mariadbfix /usr/local/bin/mariadbfix
+chmod +x /usr/local/bin/mariadbfix
 
 vitalpbx_cluster_ok:
 echo -e "************************************************************"
