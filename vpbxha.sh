@@ -1306,6 +1306,7 @@ mysql -uroot -e "STOP SLAVE;"
 mysql -uroot -e "CHANGE MASTER TO MASTER_HOST='$ip_standby', MASTER_USER='vitalpbx_replica', MASTER_PASSWORD='vitalpbx_replica', MASTER_LOG_FILE='$file_server_2', MASTER_LOG_POS=$position_server_2;"
 mysql -uroot -e "START SLAVE;"
 EOF
+chmod +x /usr/local/bin/mariadbfix
 echo -e "*** Done Step 19 END ***"
 echo -e "19"	> step.txt
 
