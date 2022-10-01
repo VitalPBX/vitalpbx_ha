@@ -157,7 +157,7 @@ EOF
 chmod +x /usr/local/bin/mariadbfix
 
 echo -e "************************************************************"
-echo -e "*                VitalPBX Cluster OK                       *"
+echo -e "*                 VitalPBX Cluster OK                      *"
 echo -e "*          MariaDB Database repaired successfully          *"
 echo -e "************************************************************"
 role
