@@ -4,6 +4,9 @@
 # Date: 30-Sep-2022
 # VitalPBX Hight Availability with MariaDB Fix
 #
+echo -e "************************************************************"
+echo -e "*                Create mariadb replica                    *"
+echo -e "************************************************************"
 filename="config.txt"
 if [ -f $filename ]; then
 	echo -e "config file"
