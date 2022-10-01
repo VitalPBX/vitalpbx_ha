@@ -986,7 +986,7 @@ cat > /usr/local/bin/bascul << EOF
 #!/bin/bash
 # This code is the property of VitalPBX LLC Company
 # License: Proprietary
-# Date: 30-Jul-2020
+# Date: 30-Sep-2022
 # Change the status of the servers, the Master goes to Stanby and the Standby goes to Master.
 #funtion for draw a progress bar
 #You must pass as argument the amount of secconds that the progress bar will run
@@ -1092,7 +1092,7 @@ cat > /usr/local/bin/role << EOF
 #!/bin/bash
 # This code is the property of VitalPBX LLC Company
 # License: Proprietary
-# Date: 30-Jul-2020
+# Date: 30-Sep-2022
 # Show the Role of Server.
 #Bash Colour Codes
 green="\033[00;32m"
