@@ -7,65 +7,6 @@
 echo -e "************************************************************"
 echo -e "*                Create mariadb replica                    *"
 echo -e "************************************************************"
-filename="config.txt"
-if [ -f $filename ]; then
-	echo -e "config file"
-	n=1
-	while read line; do
-		case $n in
-			1)
-				ip_master=$line
-  			;;
-			2)
-				ip_standby=$line
-  			;;
-			3)
-				ip_floating=$line
-  			;;
-			4)
-				ip_floating_mask=$line
-  			;;
-			5)
-				hapassword=$line
-  			;;
-		esac
-		n=$((n+1))
-	done < $filename
-fi
-cat > /etc/my.cnf.d/server.cnf << EOF
-#
-# These groups are read by MariaDB server.
-# Use it for options that only the server (but not clients) should see
-#
-# See the examples of server my.cnf files in /usr/share/mysql/
-#
-# this is read by the standalone daemon and embedded servers
-[server]
-# this is only for the mysqld standalone daemon
-[mysqld]
-#
-# * Galera-related settings
-#
-[galera]
-# Mandatory settings
-#wsrep_on=ON
-#wsrep_provider=
-#wsrep_cluster_address=
-#binlog_format=row
-#default_storage_engine=InnoDB
-#innodb_autoinc_lock_mode=2
-#
-# Allow server to accept connections on all interfaces.
-#
-#bind-address=0.0.0.0
-#
-# Optional setting
-#wsrep_slave_threads=1
-#innodb_flush_log_at_trx_commit=0
-# this is only for embedded server
-[embedded]
-EOF
-scp /etc/my.cnf.d/server.cnf root@$ip_standby:/etc/my.cnf.d/server.cnf
 mysql -uroot -e "STOP SLAVE;"
 mysql -uroot -e "RESET SLAVE;"
 systemctl restart mariadb
@@ -78,21 +19,7 @@ echo -e "*                Create mariadb replica                    *"
 echo -e "************************************************************"
 #Remove anonymous user from MySQL
 mysql -uroot -e "DELETE FROM mysql.user WHERE User='';"
-#Configuration of the First Master Server (Master-1)
-cat > /etc/my.cnf.d/vitalpbx.cnf << EOF
-[mysqld]
-server-id=1
-log-bin=mysql-bin
-report_host = master1
 
-innodb_buffer_pool_size = 64M
-innodb_flush_log_at_trx_commit = 2
-innodb_log_file_size = 64M
-innodb_log_buffer_size = 64M
-bulk_insert_buffer_size = 64M
-max_allowed_packet = 64M
-EOF
-systemctl restart mariadb
 #Create a new user on the Master-1
 mysql -uroot -e "GRANT REPLICATION SLAVE ON *.* to vitalpbx_replica@'%' IDENTIFIED BY 'vitalpbx_replica';"
 mysql -uroot -e "FLUSH PRIVILEGES;"
@@ -112,22 +39,6 @@ scp /tmp/mysqldump.sh root@$ip_standby:/tmp/mysqldump.sh
 ssh root@$ip_standby "chmod +x /tmp/mysqldump.sh"
 ssh root@$ip_standby "/tmp/./mysqldump.sh"
 
-#Configuration of the Second Master Server (Master-2)
-cat > /tmp/vitalpbx.cnf << EOF
-[mysqld]
-server-id = 2
-log-bin=mysql-bin
-report_host = master2
-
-innodb_buffer_pool_size = 64M
-innodb_flush_log_at_trx_commit = 2
-innodb_log_file_size = 64M
-innodb_log_buffer_size = 64M
-bulk_insert_buffer_size = 64M
-max_allowed_packet = 64M
-EOF
-scp /tmp/vitalpbx.cnf root@$ip_standby:/etc/my.cnf.d/vitalpbx.cnf
-ssh root@$ip_standby "systemctl restart mariadb"
 #Create a new user on the Master-2
 cat > /tmp/grand.sh << EOF
 #!/bin/bash
