@@ -1,4 +1,4 @@
-VitalPBX High Availability (Version 3)
+VitalPBX High Availability (VitalPBX Version 3)
 =====
 High availability is a characteristic of a system which aims to ensure an agreed level of operational performance, usually uptime, for a higher than normal period.<br>
 
