@@ -1,5 +1,5 @@
 ### :warning:<strong>Important notes (Read before proceeding, We recommend using VitalPBX 4 for HA):</strong></span><br>
-Due to a deficiency of MariaDB in the replication option that makes it easy to lose synchronism of the databases, we decided to use DRBD, for which we recommend the method in the following link.<br>
+If you already have your PBX in production and want to add High Availability, this method is the one you should use. However, the DRBD method is more recommended, which you can find in the following link:<br>
 https://github.com/VitalPBX/vitalpbx4_drbd_ha
 
 VitalPBX High Availability (VitalPBX Version 3)
