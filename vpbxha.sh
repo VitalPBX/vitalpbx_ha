@@ -813,7 +813,7 @@ mysqldump -u root --all-databases > all_databases.sql
 scp all_databases.sql root@$ip_standby:/tmp/all_databases.sql
 cat > /tmp/mysqldump.sh << EOF
 #!/bin/bash
-mysql mysql -u root <  /tmp/all_databases.sql 
+mysql -u root <  /tmp/all_databases.sql 
 EOF
 scp /tmp/mysqldump.sh root@$ip_standby:/tmp/mysqldump.sh
 ssh root@$ip_standby "chmod +x /tmp/mysqldump.sh"
